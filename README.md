@@ -5,7 +5,7 @@
      <a href="#-features">Features</a> •
      <a href="#-prerequisites">Prerequisites</a> • 
      <a href="#-author">Author</a> • 
-  </p>
+</p>
 
 ---
 ## 💻 About the project
@@ -30,6 +30,7 @@ The architecture of the Booking System is based on microservices to ensure scala
         Utilization of Docker and Kubernetes for horizontal scalability and fault 
         tolerance strategies in microservices.
 
+---
 ## Features
      - User Authentication:
         Login and generation of JWT token for secure authentication.
@@ -50,6 +51,7 @@ Before running the Booking System on your local machine, make sure you have inst
 - Container orchestration: **[Kubernetes (optional for cluster deployment)](https://kubernetes.io/)**
 - Container: **[Docker](https://www.docker.com/)**
 
+---
 ## ⚙️ Configuration and Installation
 
 **Frontend (Angular)**
@@ -88,6 +90,7 @@ Start the microservices individually (AuthService, BookingService, VenueService,
 
 Make sure to correctly configure the connection properties to the PostgreSQL database in the ```application.properties```  file.
 
+---
 ## Usage
     After setting up and starting both the frontend and backend, you can access the 
     application in the browser and begin using the booking functionalities.
