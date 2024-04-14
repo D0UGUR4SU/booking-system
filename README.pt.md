@@ -1,3 +1,7 @@
+<p align="center">
+    <img src="assets/booking-system.png">
+</p>
+
 <h1 align="center"> Sistema de Reservas</h1>
 
 <p align="center">

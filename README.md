@@ -1,3 +1,6 @@
+<p align="center">
+    <img src="assets/booking-system.png">
+</p>
 <h1 align="center"> Booking System</h1>
 
 <p align="center">
