@@ -77,6 +77,7 @@ ng serve
 
 Access the application in the browser at ```http://localhost:4200```.
 
+---
 **Backend (Spring Boot Microservices)**
 
 Clone the backend repository:
