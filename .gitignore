@@ -1,0 +1,13 @@
+.idea/
+
+.DS_Store
+
+*.iml
+*.ipr
+*.iws
+
+/out/
+/build/
+
+/target/
+/node_modules/
