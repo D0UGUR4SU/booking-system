@@ -10,16 +10,25 @@
 ---
 ## 💻 About the project
 
- * The Booking System is a web reservation application that allows users to view available venues and make bookings. This system consists of a frontend developed in Angular and a backend with microservices implemented using Spring Boot.
+The Booking System is a web reservation application that allows users to view available venues and make bookings. This system consists of a frontend developed in Angular and a backend with microservices implemented using Spring Boot.
 
 ---
 ## Architecture
 The architecture of the Booking System is based on microservices to ensure scalability, fault tolerance, and ease of maintenance. The key components include:
 
-    Frontend (Angular): Interactive user interface for users to interact with the system.
-    Backend (Spring Boot Microservices): Microservices providing APIs for authentication, booking management, venues, and notifications.
-    Database (PostgreSQL): Relational data storage for users, venues, and bookings.
-    Scalability and Fault Tolerance: Utilization of Docker and Kubernetes for horizontal scalability and fault tolerance strategies in microservices.
+    Frontend (Angular): 
+        Interactive user interface for users to interact with the system.
+
+    Backend (Spring Boot Microservices): 
+        Microservices providing APIs for authentication, booking management, venues, and 
+        notifications.
+
+    Database (PostgreSQL): 
+        Relational data storage for users, venues, and bookings.
+
+    Scalability and Fault Tolerance: 
+        Utilization of Docker and Kubernetes for horizontal scalability and fault 
+        tolerance strategies in microservices.
 
 ## Features
      - User Authentication:
@@ -42,11 +51,13 @@ Before running the Booking System on your local machine, make sure you have inst
 - Container: **[Docker](https://www.docker.com/)**
 
 ## ⚙️ Configuration and Installation
-# Frontend (Angular)
+
+**Frontend (Angular)**
+
 Clone the frontend repository:
 
 ```bash 
-git clone https://github.com/your-username/booking-system-frontend.git
+git clone https://github.com/D4GUR4SU/booking-system-frontend.git
 ```
 
 Install dependencies:
@@ -60,14 +71,16 @@ Start the development server:
 
 ```bash 
 ng serve
-Access the application in the browser at http://localhost:4200.
 ```
 
-Backend (Spring Boot Microservices)
+Access the application in the browser at ```http://localhost:4200```.
+
+**Backend (Spring Boot Microservices)**
+
 Clone the backend repository:
 
 ```bash 
-git clone https://github.com/your-username/booking-system-backend.git
+git clone https://github.com/D4GUR4SU/booking-system-backend.git
 ```
 Import the project into your preferred IDE (e.g., IntelliJ IDEA).
 
