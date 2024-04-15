@@ -55,7 +55,7 @@ Antes de executar o Sistema de Reservas em sua máquina local, certifique-se de 
 - Backend: **[Kit de Desenvolvimento Java (JDK)](https://openjdk.java.net/install/)**, **[Spring Boot](https://spring.io/projects/spring-boot/)**
 - Frontend: **[Node.js e npm](https://nodejs.org/en/download)**, **[Angular CLI](https://angular.io/cli)**
 - Orquestração de Contêineres: **[Kubernetes (opcional para implantação em cluster)](https://kubernetes.io/)**
-- Contêiner: **[Docker](https://www.docker.com/)**
+- Virtualização: **[Docker](https://www.docker.com/)**
 
 ---
 ## ⚙️ Configuração e Instalação

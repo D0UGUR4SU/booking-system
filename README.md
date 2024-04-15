@@ -49,10 +49,10 @@ The architecture of the Booking System is based on microservices to ensure scala
 
 Before running the Booking System on your local machine, make sure you have installed the following:
 
-- Backend: **[Java Development Kit (JDK)](https://openjdk.java.net/install/)**, **[Spring Boot](https://spring.io/projects/spring-boot/)**'
+- Backend: **[Java Development Kit (JDK)](https://openjdk.java.net/install/)**, **[Spring Boot](https://spring.io/projects/spring-boot/)**
 - Frontend: **[Node.js and npm](https://nodejs.org/en/download)**, **[Angular CLI](https://angular.io/cli)**
 - Container orchestration: **[Kubernetes (optional for cluster deployment)](https://kubernetes.io/)**
-- Container: **[Docker](https://www.docker.com/)**
+- Virtualization: **[Docker](https://www.docker.com/)**
 
 ---
 ## ⚙️ Configuration and Installation
@@ -62,7 +62,7 @@ Before running the Booking System on your local machine, make sure you have inst
 Clone the frontend repository:
 
 ```bash 
-git clone https://github.com/D4GUR4SU/booking-system-frontend.git
+git clone https://github.com/D4GUR4SU/booking-system/frontend.git
 ```
 
 Install dependencies:
@@ -86,7 +86,7 @@ Access the application in the browser at ```http://localhost:4200```.
 Clone the backend repository:
 
 ```bash 
-git clone https://github.com/D4GUR4SU/booking-system-backend.git
+git clone https://github.com/D4GUR4SU/booking-system/backend.git
 ```
 Import the project into your preferred IDE (e.g., IntelliJ IDEA).
 
