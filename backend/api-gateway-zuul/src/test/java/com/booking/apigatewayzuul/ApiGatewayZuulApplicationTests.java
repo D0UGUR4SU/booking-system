@@ -1,4 +1,4 @@
-package com.booking.apigatewayzuul;
+package test.java.com.booking.apigatewayzuul;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -22,55 +22,55 @@ import java.util.Arrays;
 @Configuration
 public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
-  private final JwtTokenStore tokenStore;
+    private final JwtTokenStore tokenStore;
 
-  private static final String[] PUBLIC = {"/oauth/oauth/token"};
-  private static final String[] OPERATOR = {""};
-  private static final String[] ADMINISTRATOR = {"/actuator/**", "/oauth/actuator/**"};
+    private static final String[] PUBLIC = { "/oauth/oauth/token" };
+    private static final String[] OPERATOR = { "/users/**" };
+    private static final String[] ADMINISTRATOR = { "/users/**", "/actuator/**", "/oauth/actuator/**" };
 
-  @Autowired
-  public ResourceServerConfig(JwtTokenStore tokenStore) {
-    this.tokenStore = tokenStore;
-  }
+    public static final String ADMIN = "ADMINISTRATOR";
+    public static final String OP = "OPERATOR";
 
-  @Override
-  public void configure(ResourceServerSecurityConfigurer resources) {
-    resources.tokenStore(tokenStore);
-  }
+    @Autowired
+    public ResourceServerConfig(JwtTokenStore tokenStore) {
+        this.tokenStore = tokenStore;
+    }
 
-  @Override
-  public void configure(HttpSecurity http) throws Exception {
-    http.authorizeRequests()
-        .antMatchers(PUBLIC)
-        .permitAll()
-        .antMatchers(HttpMethod.GET, OPERATOR)
-        .hasAnyRole("OPERATOR", "ADMINISTRATOR")
-        .antMatchers(ADMINISTRATOR)
-        .hasRole("ADMINISTRATOR")
-        .anyRequest()
-        .authenticated();
+    @Override
+    public void configure(ResourceServerSecurityConfigurer resources) {
+        resources.tokenStore(tokenStore);
+    }
 
-    http.cors().configurationSource(corsConfigurationSource());
-  }
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers(PUBLIC).permitAll()
+                .antMatchers(HttpMethod.GET, OPERATOR).hasAnyRole(OP, ADMIN)
+                .antMatchers(ADMINISTRATOR).hasRole(ADMIN)
+                .anyRequest()
+                .authenticated();
 
-  @Bean
-  public CorsConfigurationSource corsConfigurationSource() {
-    CorsConfiguration corsConfig = new CorsConfiguration();
-    corsConfig.setAllowedOrigins(Arrays.asList("*"));
-    corsConfig.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "PATCH"));
-    corsConfig.setAllowCredentials(true);
-    corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
+        http.cors().configurationSource(corsConfigurationSource());
+    }
 
-    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-    source.registerCorsConfiguration("/**", corsConfig);
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration corsConfig = new CorsConfiguration();
+        corsConfig.setAllowedOrigins(Arrays.asList("*"));
+        corsConfig.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "PATCH"));
+        corsConfig.setAllowCredentials(true);
+        corsConfig.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
 
-    return source;
-  }
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", corsConfig);
 
-  @Bean
-  public FilterRegistrationBean<CorsFilter> corsFilter() {
-    FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter());
-    bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
-    return bean;
-  }
+        return source;
+    }
+
+    @Bean
+    public FilterRegistrationBean<CorsFilter> corsFilter(){
+        FilterRegistrationBean<CorsFilter> bean = new FilterRegistrationBean<>(new CorsFilter());
+        bean.setOrder(Ordered.HIGHEST_PRECEDENCE);
+        return bean;
+    }
 }
