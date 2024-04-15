@@ -1,12 +1,21 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from "@angular/core";
 import {LoginComponent} from "./components/login/login.component";
-import {AppComponent} from "./app.component";
+import {DashboardComponent} from "./components/dashboard/dashboard.component";
+import {LayoutComponent} from "./components/layout/layout.component";
 
 export const routes: Routes = [
-  {path: '', component: AppComponent},
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
-  { path: '**', redirectTo:'home' }
+  {
+    path: '', component: LayoutComponent,
+    children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      }
+    ]
+  }
 ];
 
 @NgModule({
@@ -15,4 +24,5 @@ export const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class AppRoutes {}
+export class AppRoutes {
+}
