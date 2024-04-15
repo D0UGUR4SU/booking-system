@@ -1,8 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormsModule} from "@angular/forms";
 import {NgClass} from "@angular/common";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {UserService} from "../../services/user.service";
 
 @Component({
   selector: 'app-login',
@@ -16,60 +17,31 @@ import {HttpClient, HttpClientModule} from "@angular/common/http";
 })
 export class LoginComponent {
 
-  signUpObj: SignUp = new SignUp();
-  loginObj: Login = new Login();
-
-  constructor(private http: HttpClient, private router: Router) {
-    this.loginObj = new Login();
+  loginObj: any = {
+    "Email": "",
+    "Password": ""
   }
 
-  onRegister() {
-    debugger;
-    const localUser = localStorage.getItem('angular17users');
-    if (localUser != null) {
-      const users = JSON.parse(localUser);
-      users.push(this.signUpObj);
-      localStorage.setItem('angular17users', JSON.stringify(users))
-    } else {
-      const users = [];
-      users.push(this.signUpObj);
-      localStorage.setItem('angular17users', JSON.stringify(users))
-    }
-    alert('Registration Success')
+  router = inject(Router);
+
+  constructor(private userSrv: UserService) {
+
   }
 
-  onLogin() {
+  login() {
     debugger;
-    this.http.post('mongodb://localhost:27017/booking-system-login', this.loginObj).subscribe((res: any) => {
+    this.userSrv.onLogin(this.loginObj).subscribe((res: any) => {
+      debugger;
       if (res.result) {
-        alert('Login success!');
+        localStorage.setItem('angular17TokenData', JSON.stringify(res.data));
+        localStorage.setItem('angular17TokenEmail', res.data.emailId);
+        localStorage.setItem('angular17TokenUserId', res.data.userId);
         this.router.navigateByUrl('/dashboard');
       } else {
-        alert(res.message);
+        alert(res.message)
       }
-    });
-  }
-
-}
-
-export class SignUp {
-  name: string;
-  email: string;
-  password: string;
-
-  constructor() {
-    this.email = "";
-    this.name = "";
-    this.password = ""
-  }
-}
-
-export class Login {
-  email: string;
-  password: string;
-
-  constructor() {
-    this.email = "";
-    this.password = ""
+    }, error => {
+      alert("Wrong Credentials")
+    })
   }
 }
