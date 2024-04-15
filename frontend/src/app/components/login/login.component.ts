@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormsModule} from "@angular/forms";
 import {NgClass} from "@angular/common";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -9,20 +10,18 @@ import {NgClass} from "@angular/common";
   standalone: true,
   imports: [
     FormsModule,
-    NgClass
+    HttpClientModule
   ],
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
 
-  isSignDivVisible: boolean = true;
+  signUpObj: SignUp = new SignUp();
+  loginObj: Login = new Login();
 
-  signUpObj: SignUpModel = new SignUpModel();
-  loginObj: LoginModel = new LoginModel();
-
-  constructor(private router: Router) {
+  constructor(private http: HttpClient, private router: Router) {
+    this.loginObj = new Login();
   }
-
 
   onRegister() {
     debugger;
@@ -41,24 +40,19 @@ export class LoginComponent {
 
   onLogin() {
     debugger;
-    const localUsers = localStorage.getItem('angular17users');
-    if (localUsers != null) {
-      const users = JSON.parse(localUsers);
-
-      const isUserPresent = users.find((user: SignUpModel) => user.email == this.loginObj.email && user.password == this.loginObj.password);
-      if (isUserPresent != undefined) {
-        alert("User Found...");
-        localStorage.setItem('loggedUser', JSON.stringify(isUserPresent));
+    this.http.post('mongodb://localhost:27017/booking-system-login', this.loginObj).subscribe((res: any) => {
+      if (res.result) {
+        alert('Login success!');
         this.router.navigateByUrl('/dashboard');
       } else {
-        alert("No User Found")
+        alert(res.message);
       }
-    }
+    });
   }
 
 }
 
-export class SignUpModel {
+export class SignUp {
   name: string;
   email: string;
   password: string;
@@ -70,7 +64,7 @@ export class SignUpModel {
   }
 }
 
-export class LoginModel {
+export class Login {
   email: string;
   password: string;
 
