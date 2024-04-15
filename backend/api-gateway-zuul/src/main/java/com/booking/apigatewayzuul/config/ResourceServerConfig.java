@@ -24,14 +24,14 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 
   private final JwtTokenStore tokenStore;
 
+  private static final String[] PUBLIC = {"/oauth/oauth/token"};
+  private static final String[] OPERATOR = {""};
+  private static final String[] ADMINISTRATOR = {"/actuator/**", "/oauth/actuator/**"};
+
   @Autowired
   public ResourceServerConfig(JwtTokenStore tokenStore) {
     this.tokenStore = tokenStore;
   }
-
-  private static final String[] PUBLIC = {"/auth/oauth/token"};
-  private static final String[] OPERATOR = {""};
-  private static final String[] ADMINISTRATOR = {"/actuator/**", "/auth/actuator/**"};
 
   @Override
   public void configure(ResourceServerSecurityConfigurer resources) {

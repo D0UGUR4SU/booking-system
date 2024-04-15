@@ -1,16 +1,16 @@
-package com.booking.apigatewayzuul;
+package com.booking.oauth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
+@EnableFeignClients
 @EnableEurekaClient
-@EnableZuulProxy
 @SpringBootApplication
-public class ApiGatewayZuulApplication {
+public class OauthApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(ApiGatewayZuulApplication.class, args);
+    SpringApplication.run(OauthApplication.class, args);
   }
 }
