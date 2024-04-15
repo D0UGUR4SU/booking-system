@@ -13,7 +13,7 @@
     <groupId>com.booking</groupId>
     <artifactId>auth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Auth</name>
+    <name>auth</name>
     <description>Authentication server</description>
 
     <properties>
