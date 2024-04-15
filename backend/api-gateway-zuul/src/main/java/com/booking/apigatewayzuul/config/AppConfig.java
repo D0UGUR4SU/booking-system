@@ -1,4 +1,4 @@
-package com.spring.hrapigatewayzuul.config;
+package com.booking.apigatewayzuul.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;

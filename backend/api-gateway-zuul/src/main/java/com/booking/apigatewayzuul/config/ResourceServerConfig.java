@@ -1,4 +1,4 @@
-package com.spring.hrapigatewayzuul.config;
+package com.booking.apigatewayzuul.config;
 
 import org.apache.catalina.filters.CorsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
