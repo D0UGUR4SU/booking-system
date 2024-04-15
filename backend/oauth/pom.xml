@@ -10,7 +10,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	
-	<groupId>com.spring</groupId>
+	<groupId>com.booking</groupId>
 	<artifactId>oauth</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>oauth</name>
@@ -36,7 +36,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
 		</dependency>
 
 		<dependency>

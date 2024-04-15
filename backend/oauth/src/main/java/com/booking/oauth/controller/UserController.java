@@ -5,33 +5,30 @@ import com.booking.oauth.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/users")
 public class UserController {
 
-  private final UserService userService;
+    private final UserService userService;
 
-  @Autowired
-  public UserController(UserService userService) {
-    this.userService = userService;
-  }
-
-  @GetMapping("/search")
-  public ResponseEntity<User> findByEmail(@RequestParam String email) {
-    try {
-      User user = userService.findByEmail(email);
-      return ResponseEntity.ok(user);
-    } catch (IllegalArgumentException e) {
-      return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
-  }
+
+    @GetMapping("/search")
+    public ResponseEntity<User> findByEmail(@RequestParam String email) {
+        try{
+            User user = userService.findByEmail(email);
+            return ResponseEntity.ok(user);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+
+    }
 }

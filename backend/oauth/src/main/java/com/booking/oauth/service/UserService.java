@@ -11,27 +11,28 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService implements UserDetailsService {
 
-  private final UserFeignClient userFeignClient;
+    private final UserFeignClient userFeignClient;
 
-  @Autowired
-  public UserService(UserFeignClient userFeignClient) {
-    this.userFeignClient = userFeignClient;
-  }
-
-  public User findByEmail(String email) {
-    User user = userFeignClient.findByEmail(email).getBody();
-    if (user == null) {
-      throw new IllegalArgumentException("Email not found");
+    @Autowired
+    public UserService(UserFeignClient userFeignClient) {
+        this.userFeignClient = userFeignClient;
     }
-    return user;
-  }
 
-  @Override
-  public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    User user = userFeignClient.findByEmail(username).getBody();
-    if (user == null) {
-      throw new UsernameNotFoundException("Email not found");
+    public User findByEmail(String email) {
+        User user = userFeignClient.findByEmail(email).getBody();
+        if (user == null) {
+            throw new IllegalArgumentException("Email not found");
+        }
+
+        return user;
     }
-    return user;
-  }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userFeignClient.findByEmail(username).getBody();
+        if (user == null) {
+            throw new UsernameNotFoundException("Email not found");
+        }
+        return user;
+    }
 }
